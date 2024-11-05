@@ -1,15 +1,4 @@
 <section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
-        </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
-        </p>
-    </header>
-
-
        <!-- ======= send email verfiication ======= -->
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
@@ -18,6 +7,17 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+    <div class="row mb-3">
+    <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile Image</label>
+        <div class="col-md-8 col-lg-9">
+            <img src="assets/img/profile-img.jpg" alt="Profile">
+            <div class="pt-2">
+                <a href="#" class="btn btn-primary btn-sm" title="Upload new profile image"><i class="bi bi-upload"></i></a>
+                <a href="#" class="btn btn-danger btn-sm" title="Remove my profile image"><i class="bi bi-trash"></i></a>
+            </div>
+        </div>
+     </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -48,6 +48,12 @@
                 </div>
             @endif
         </div>
+        <div>
+           <x-input-label for="role" :value="__('Role')" />
+           <x-text-input id="role" name="role" type="text" class="mt-1 block w-full" :value="old('role', $user->role)" required autocomplete="role" />
+           <x-input-error class="mt-2" :messages="$errors->get('role')" />
+        </div>
+
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
