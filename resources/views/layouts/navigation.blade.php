@@ -215,7 +215,7 @@
     </a>
     <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
     <li>
-        <a href="profile.blade.php">
+        <a href="{{ route('users') }}">
           <i class="bi bi-circle"></i><span>User</span>
         </a>
       </li>
@@ -225,7 +225,7 @@
         </a>
       </li>
       <li>
-        <a href="{{ route('register') }}">
+        <a href="{{ route('register') }}" >
           <i class="bi bi-circle"></i><span>Register</span>
         </a>
       </li>
@@ -233,23 +233,23 @@
   </li><!-- End Components Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="categorie.blade.php">
+    <a class="nav-link collapsed" href="{{ route('categories') }}">
       <i class="bi bi-journal-text"></i><span>Categories</span>
     </a>
   </li><!-- End Forms Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-layout-text-window-reverse"></i><span>Inventory</span><i class="bi bi-chevron-down ms-auto"></i>
+      <i class="bi bi-layout-text-window-reverse"></i><span>Stocks</span><i class="bi bi-chevron-down ms-auto"></i>
     </a>
     <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="tables-general.html">
+        <a href="{{route('stocks.index')}}">
           <i class="bi bi-circle"></i><span>Manage Stocks</span>
         </a>
       </li>
       <li>
-        <a href="tables-data.html">
+        <a href="{{route('stocks.create')}}">
           <i class="bi bi-circle"></i><span>Add Stocks</span>
         </a>
       </li>
