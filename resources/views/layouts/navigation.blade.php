@@ -225,9 +225,11 @@
         </a>
       </li>
       <li>
+        @auth
         <a href="{{ route('register') }}" >
           <i class="bi bi-circle"></i><span>Register</span>
         </a>
+        @endauth
       </li>
     </ul>
   </li><!-- End Components Nav -->
