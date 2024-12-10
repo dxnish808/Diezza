@@ -32,7 +32,7 @@
                       <b>N</b>ame
                     </th>
                     <th>Email</th>
-                    <th>Position</th>
+                    <th>Role</th>
                     <th data-type="date" data-format="YYYY/DD/MM">Start Date</th>
                     <th>Action</th>
                   </tr>
@@ -43,7 +43,7 @@
                      
                      <td>{{$user->name}}</td>
                      <td>{{$user->email}}</td>
-                     <td>Null</td>
+                     <td>{{$user->role}}</td>
                      <td>{{$user->created_at->format('Y-m-d')}}</td>
                      <td>
                         <a href="{{ route('profile.admin.edit', $user->id) }}" class="btn btn-warning">Edit</a>

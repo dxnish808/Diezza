@@ -209,6 +209,8 @@
     </a>
   </li><!-- End Dashboard Nav -->
 
+
+  @if (auth()->user()->role === 'admin')
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-menu-button-wide"></i><span>User Management</span><i class="bi bi-chevron-down ms-auto"></i>
@@ -225,14 +227,16 @@
         </a>
       </li>
       <li>
-        @auth
+      @auth
         <a href="{{ route('register') }}" >
           <i class="bi bi-circle"></i><span>Register</span>
         </a>
         @endauth
       </li>
     </ul>
-  </li><!-- End Components Nav -->
+  </li>
+  @endif
+  <!-- End Components Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('categories') }}">
