@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 
 class RoleMiddleware
 {
@@ -12,15 +13,17 @@ class RoleMiddleware
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
-     * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
+     * @param  callable(Request):RedirectResponse|Response  $next
+     * @param  string  $role
+     * @return RedirectResponse|Response
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, callable $next, $role): RedirectResponse|Response
     {
-        if (Auth::check() && Auth::user()->role === $role) {
-            return $next($request);
+        if ($request->user()->role !== $role) {
+            
+            return redirect()->route('unauthorized'); 
         }
-
-        abort(403, 'Unauthorized'); 
+        return $next($request);
     }
 }
+
