@@ -7,6 +7,7 @@ use App\Models\Stock;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class StockController extends Controller
 {
@@ -17,8 +18,8 @@ class StockController extends Controller
      */
     public function index(): View
     {
-        $stocks = Stock::with('category')->get(); // Eager load category data
-        return view('stocks.index', compact('stocks'));
+        $stocks = Stock::all();
+    return view('stocks.index', compact('stocks'));
     }
 
     /**
@@ -44,11 +45,24 @@ class StockController extends Controller
             'name' => 'required|string|max:255',
             'in_stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
-        ]);
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'barcode' => 'nullable|string|max:255',
+            'brand' => 'nullable|string|max:255',
+            'capacity' => 'nullable|string|max:255', 
+            'sell_price' => 'nullable|numeric',
+            'cost' => 'nullable|numeric',
+            ]);
 
-        Stock::create($request->all());
+        $validated = $request->all();
 
-        return redirect()->route('stocks.index')->with('success', 'Stock item added successfully!');
+        if ($request->hasFile('picture')) {
+            $path = $request->file('picture')->store('stocks', 'public');
+            $validated['picture'] = $path;
+        }
+
+        Stock::create($validated);
+
+        return redirect()->route('stocks.index')->with('success', 'Stock added successfully!');
     }
 
     /**
@@ -57,11 +71,21 @@ class StockController extends Controller
      * @param  int  $id
      * @return View
      */
-    public function show($id): View
-    {
-        $stock = Stock::with('category')->findOrFail($id);
-        return view('stocks.show', compact('stock'));
+    public function show($id)
+{
+    $stock = Stock::with('category')->find($id); // Attempt to find the stock by ID
+
+    if (!$stock) {
+        // If the stock is not found, still return a view (to avoid the type error)
+        return view('stocks.notfound', [
+            'message' => 'Stock not found!',
+        ]);
     }
+
+    return view('stocks.show', compact('stock')); // Return the view with the stock
+}
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,6 +112,12 @@ class StockController extends Controller
             'name' => 'required|string|max:255',
             'in_stock' => 'required|integer|min:0',
             'category_id' => 'required|exists:categories,id',
+            'picture' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'barcode' => 'nullable|string|max:255',
+            'brand' => 'nullable|string|max:255',
+            'capacity' => 'nullable|string|max:255', 
+            'sell_price' => 'nullable|numeric',
+            'cost' => 'nullable|numeric',
         ]);
 
         $stock->update($request->all());

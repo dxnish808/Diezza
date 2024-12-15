@@ -35,6 +35,7 @@
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Picture</th>
                                 <th>Name</th>
                                 <th>In Stock</th>
                                 <th>Category</th>
@@ -43,8 +44,15 @@
                         </thead>
                         <tbody>
                             @forelse ($stocks as $stock)
-                                <tr>
+                                <<tr onclick="window.location='{{ route('stocks.show', $stock) }}';">
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        @if($stock->picture)
+                                            <img src="{{ asset('storage/' . $stock->picture) }}" alt="{{ $stock->name }}" style="width: 50px; height: 50px;">
+                                        @else
+                                            No Image
+                                        @endif
+                                    </td>
                                     <td>{{ $stock->name }}</td>
                                     <td>{{ $stock->in_stock }}</td>
                                     <td>{{ $stock->category->name }}</td>

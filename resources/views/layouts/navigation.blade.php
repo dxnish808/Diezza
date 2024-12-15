@@ -269,7 +269,7 @@
     <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
         <a href="charts-chartjs.html">
-          <i class="bi bi-circle"></i><span>Verification</span>
+          <i class="bi bi-circle"></i><span>Purchase Orders</span>
         </a>
       </li>
       <li>
@@ -277,6 +277,12 @@
           <i class="bi bi-circle"></i><span>Add Order</span>
         </a>
       </li>
+      <li>
+        <a href="charts-apexcharts.html">
+          <i class="bi bi-circle"></i><span>Vendors</span>
+        </a>
+      </li>
+      
     </ul>
   </li><!-- End Charts Nav -->
 

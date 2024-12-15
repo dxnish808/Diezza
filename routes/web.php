@@ -24,6 +24,10 @@ Route::get('/dashboard', function () {
 
 // Stock management (accessible by all authenticated users)
 Route::resource('stocks', StockController::class)->middleware('auth');
+Route::get('stocks/{id}', [StockController::class, 'show'])->name('stocks.show');
+
+
+
 
 // General routes for authenticated users
 Route::middleware(['auth'])->group(function () {

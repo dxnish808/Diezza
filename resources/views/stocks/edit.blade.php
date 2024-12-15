@@ -64,6 +64,50 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <!-- Barcode -->
+                            <div class="col-md-6">
+                                <label for="barcode" class="form-label">Barcode</label>
+                                <input type="text" class="form-control" id="barcode" name="barcode" value="{{ old('barcode', $stock->barcode) }}" required>
+                                @error('barcode')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Brand -->
+                            <div class="col-md-6">
+                                <label for="brand" class="form-label">Brand</label>
+                                <input type="text" class="form-control" id="brand" name="brand" value="{{ old('brand', $stock->brand) }}" required>
+                                @error('brand')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Capacity -->
+                            <div class="col-md-6">
+                                <label for="capacity" class="form-label">Capacity</label>
+                                <input type="text" class="form-control" id="capacity" name="capacity" value="{{ old('capacity', $stock->capacity) }}" required>
+                                @error('capacity')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Sell Price -->
+                            <div class="col-md-6">
+                                <label for="sell_price" class="form-label">Sell Price</label>
+                                <input type="number" step="0.01" class="form-control" id="sell_price" name="sell_price" value="{{ old('sell_price', $stock->sell_price) }}" required>
+                                @error('sell_price')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Cost -->
+                            <div class="col-md-6">
+                                <label for="cost" class="form-label">Cost</label>
+                                <input type="number" step="0.01" class="form-control" id="cost" name="cost" value="{{ old('cost', $stock->cost) }}" required>
+                                @error('cost')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
 
                             <!-- Submit Button -->
                             <div class="d-flex justify-content-end">
