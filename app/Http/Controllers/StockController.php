@@ -75,13 +75,6 @@ class StockController extends Controller
 {
     $stock = Stock::with('category')->find($id); // Attempt to find the stock by ID
 
-    if (!$stock) {
-        // If the stock is not found, still return a view (to avoid the type error)
-        return view('stocks.notfound', [
-            'message' => 'Stock not found!',
-        ]);
-    }
-
     return view('stocks.show', compact('stock')); // Return the view with the stock
 }
 

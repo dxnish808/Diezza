@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\VendorController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\RestockController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,8 +27,6 @@ Route::get('/dashboard', function () {
 // Stock management (accessible by all authenticated users)
 Route::resource('stocks', StockController::class)->middleware('auth');
 Route::get('stocks/{id}', [StockController::class, 'show'])->name('stocks.show');
-
-
 
 
 // General routes for authenticated users
@@ -72,3 +72,16 @@ Route::middleware('guest')->group(function () {
 
 // Logout for authenticated users
 Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middleware('auth')->name('logout');
+
+//Vendors
+Route::resource('vendors', VendorController::class);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('restocks', [RestockController::class, 'index'])->name('restocks.index'); // Restock list
+    Route::get('restocks/create', [RestockController::class, 'create'])->name('restocks.create'); // Add restock form
+    Route::post('restocks', [RestockController::class, 'store'])->name('restocks.store'); // Store new restock
+});
+
+Route::resource('restock', RestockController::class)->middleware('auth');
+Route::get('restocks/{id}', [RestockController::class, 'show'])->name('restocks.show');
+

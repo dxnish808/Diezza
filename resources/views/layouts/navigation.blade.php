@@ -222,11 +222,6 @@
         </a>
       </li>
       <li>
-        <a href="components-alerts.html">
-          <i class="bi bi-circle"></i><span>Group Role</span>
-        </a>
-      </li>
-      <li>
       @auth
         <a href="{{ route('register') }}" >
           <i class="bi bi-circle"></i><span>Register</span>
@@ -268,28 +263,45 @@
     </a>
     <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
       <li>
-        <a href="charts-chartjs.html">
+        <a href="{{route('restock.index')}}">
           <i class="bi bi-circle"></i><span>Purchase Orders</span>
         </a>
       </li>
       <li>
-        <a href="charts-apexcharts.html">
+        <a href="{{route('restock.create')}}">
           <i class="bi bi-circle"></i><span>Add Order</span>
-        </a>
-      </li>
-      <li>
-        <a href="charts-apexcharts.html">
-          <i class="bi bi-circle"></i><span>Vendors</span>
         </a>
       </li>
       
     </ul>
-  </li><!-- End Charts Nav -->
+  </li>
+
+  <li class="nav-item">
+    <a class="nav-link collapsed" data-bs-target="#vendors_data" data-bs-toggle="collapse" href="#">
+      <i class="bi bi-bar-chart"></i><span>Vendors</span><i class="bi bi-chevron-down ms-auto"></i>
+    </a>
+    <ul id="vendors_data" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+      <li>
+        <a href="{{route('vendors.index')}}">
+          <i class="bi bi-circle"></i><span>Manage Vendors</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{route('vendors.create')}}">
+          <i class="bi bi-circle"></i><span>Add Vendor</span>
+        </a>
+      </li>
+      
+    </ul>
+  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
       <i class="bi bi-gem"></i><span>Report</span>
     </a>
+    </li>
+
+
 </ul>
 
 </aside><!-- End Sidebar-->  
