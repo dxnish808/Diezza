@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\RestockController;
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -27,6 +28,10 @@ Route::get('/dashboard', function () {
 // Stock management (accessible by all authenticated users)
 Route::resource('stocks', StockController::class)->middleware('auth');
 Route::get('stocks/{id}', [StockController::class, 'show'])->name('stocks.show');
+
+Route::get('/scan-barcode', function () {
+    return view('stocks.scan');
+})->name('stocks.scan');
 
 
 // General routes for authenticated users
@@ -84,4 +89,10 @@ Route::middleware(['auth'])->group(function () {
 
 Route::resource('restock', RestockController::class)->middleware('auth');
 Route::get('restocks/{id}', [RestockController::class, 'show'])->name('restocks.show');
+// In routes/web.php
+Route::get('restocks/return', [RestockController::class, 'showReturnPage'])->name('restocks.return');
+Route::post('restocks/return', [RestockController::class, 'processReturn'])->name('restocks.processReturn');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/show', [ReportController::class, 'show'])->name('reports.show');
 

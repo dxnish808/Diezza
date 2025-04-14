@@ -55,8 +55,25 @@ class RestockController extends Controller
             ],
         ];
 
-        return view('restock
-        .show', compact('restock'));
+        return view('restock.show', compact('restock'));
     }
+
+    // In RestockController.php
+
+public function showReturnPage()
+{
+    return view('restocks.return');
+}
+
+public function processReturn(Request $request)
+{
+    $request->validate([
+        'stock_quantity' => 'required|integer|min:1',
+        'reason' => 'required|string|max:255',
+    ]);
+
+    return redirect()->route('restocks.index')->with('success', 'Return processed successfully.');
+}
+
 }
 

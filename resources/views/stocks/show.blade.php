@@ -23,7 +23,7 @@
                             <div class="card-body">
                                 
                                 <!-- Product Details -->
-                                <h5 class="card-title">Product Details</h5>
+                                <h5 class="card-title"></h5>
 
                                 <p><strong>Name:</strong> {{ $stock->name }}</p>
                                 <p><strong>Category:</strong> {{ $stock->category->name }}</p>

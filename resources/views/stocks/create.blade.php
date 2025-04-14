@@ -10,6 +10,7 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('stocks.index') }}">Stocks</a></li>
                 <li class="breadcrumb-item active">Add Stocks</li>
             </ol>
         </nav>
@@ -20,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add New Stock</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- Form to Add Stock -->
                         <form class="row g-3" action="{{ route('stocks.store') }}" method="POST">

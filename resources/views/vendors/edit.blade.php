@@ -7,12 +7,12 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Edit Vendors</h1>
+        <h1>Update Vendors</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('vendors.index') }}">Manage Vendors</a></li>
-                <li class="breadcrumb-item active">Edit Vendors</li>
+                <li class="breadcrumb-item"><a href="{{ route('vendors.index') }}">Vendors</a></li>
+                <li class="breadcrumb-item active">Update Vendors</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -22,7 +22,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit Vendor Details</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- Edit Form -->
                         <form action="{{ route('vendors.update', $vendor) }}" method="POST">

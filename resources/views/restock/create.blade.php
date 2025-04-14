@@ -10,7 +10,8 @@
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item active">Add Stocks</li>
+                <li class="breadcrumb-item"><a href="{{ route('restock.index') }}">Restocks</a></li>
+                <li class="breadcrumb-item active">Add New Orders</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -20,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Add New Stock</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- Form to Add Stock -->
                         <form class="row g-3" action="{{ route('stocks.store') }}" method="POST">
@@ -49,6 +50,14 @@
                         <label for="supplier" class="form-label">Supplier</label>
                         <input type="text" id="supplier" name="supplier" class="form-control" value="{{ old('supplier') }}" required>
                         @error('supplier')
+                            <div class="text-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="date" class="form-label">Estimate Date</label>
+                        <input type="text" id="date" name="date" class="form-control" value="{{ old('date') }}" required>
+                        @error('date')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>

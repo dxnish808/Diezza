@@ -7,11 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Manage Vendors</h1>
+      <h1>Vendors</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Manage Vendors</li>
+          <li class="breadcrumb-item active">Vendors</li>
         </ol>
       </nav>
     </div>
@@ -30,7 +30,12 @@
             <!-- Stock Table -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Vendors List</h5>
+                    <h5 class="card-title"></h5>
+                    <div class="parent">
+                    <a href="{{ route('vendors.create') }}" class="btn btn-success btn-custom">
+                    <i class="bi bi-plus"></i>
+                    </a>
+                </div>
                     <table class="table datatable">
                         <thead>
                         <tr>
@@ -47,11 +52,11 @@
                                 <td>{{ $vendor->vendor_name }}</td>
                                 <td>{{ $vendor->company_id }}</td>
                                 <td>
-                                <a href="{{ route('vendors.edit', $vendor) }}" class="btn btn-warning">Edit</a>
+                                <a href="{{ route('vendors.edit', $vendor) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                 <form action="{{ route('vendors.destroy', $vendor) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></button>
                                 </form>
                                     </td>
                                 </tr>

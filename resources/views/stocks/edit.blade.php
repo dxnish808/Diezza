@@ -6,12 +6,12 @@
 
 <main id="main" class="main">
     <div class="pagetitle">
-        <h1>Edit Stocks</h1>
+        <h1>Update Stocks</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{{ route('stocks.index') }}">Manage Stocks</a></li>
-                <li class="breadcrumb-item active">Edit Stocks</li>
+                <li class="breadcrumb-item"><a href="{{ route('stocks.index') }}">Stocks</a></li>
+                <li class="breadcrumb-item active">Update Stocks</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -21,7 +21,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Edit Stock Details</h5>
+                        <h5 class="card-title"></h5>
 
                         <!-- Edit Form -->
                         <form class="row g-3" method="POST" action="{{ route('stocks.update', $stock->id) }}">

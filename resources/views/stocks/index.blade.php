@@ -7,11 +7,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Manage Stocks</h1>
+      <h1>Stocks</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Manage Stocks</li>
+          <li class="breadcrumb-item active">Stocks</li>
         </ol>
       </nav>
     </div>
@@ -30,7 +30,19 @@
             <!-- Stock Table -->
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Stock List</h5>
+                    <h1 class="card-title"></h1>
+                    <div class="parent">
+                        <!-- Create Stock Button -->
+                        <a href="{{ route('stocks.create') }}" class="btn btn-success btn-custom">
+                            <i class="bi bi-plus"></i>
+                        </a>
+
+                        <!-- Scan Barcode Button -->
+                        <a href="{{ route('stocks.scan') }}" class="btn btn-primary btn-custom">
+                            <i class="bi bi-upc-scan"></i> Scan Barcode</a>
+                    </div>
+                </div>
+                    
                     <table class="table datatable">
                         <thead>
                             <tr>
@@ -44,11 +56,11 @@
                         </thead>
                         <tbody>
                             @forelse ($stocks as $stock)
-                                <<tr onclick="window.location='{{ route('stocks.show', $stock) }}';">
+                                <tr onclick="window.location='{{ route('stocks.show', $stock) }}';">
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
                                         @if($stock->picture)
-                                            <img src="{{ asset('storage/' . $stock->picture) }}" alt="{{ $stock->name }}" style="width: 50px; height: 50px;">
+                                            <img src="{{ asset('storage/' . $stock->picture) }}" alt="{{ $stock->name }}" style="width: 40px; height: 40px;">
                                         @else
                                             No Image
                                         @endif
@@ -57,11 +69,11 @@
                                     <td>{{ $stock->in_stock }}</td>
                                     <td>{{ $stock->category->name }}</td>
                                     <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure? Once deleted, all of its resources and data will be permanently deleted.')">Delete</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure? Once deleted, all of its resources and data will be permanently deleted.')"><i class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>

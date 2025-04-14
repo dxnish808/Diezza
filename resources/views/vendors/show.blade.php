@@ -7,7 +7,7 @@
 
         <main id="main" class="main">
             <div class="pagetitle">
-                <h1>Stock Details</h1>
+                <h1>Vendor Details</h1>
                 <nav>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
@@ -24,7 +24,7 @@
                             <div class="card-body">
                                 
                                 <!-- Product Details -->
-                                <h5 class="card-title">Product Details</h5>
+                                <h5 class="card-title"></h5>
 
                                 <p><strong>Name:</strong> {{ $vendor->vendor_name }}</p>
                                 <p><strong>Company ID:</strong> {{ $vendor->company_id }}</p>

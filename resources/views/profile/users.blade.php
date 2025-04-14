@@ -6,12 +6,11 @@
   <main id="main" class="main">
 
   <div class="pagetitle">
-      <h1>User</h1>
+      <h1>Users</h1>
       <nav>
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">User Management</li>
-          <li class="breadcrumb-item active">User</li>
+          <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
+          <li class="breadcrumb-item active">Users</li>
         </ol>
       </nav>
     </div>
@@ -22,7 +21,12 @@
 
           <div class="card">
             <div class="card-body">
-              <h1 class="card-title">User Table</h1>
+              <h1 class="card-title"></h1>
+              <div class="parent">
+                    <a href="{{ route('register') }}" class="btn btn-success btn-custom">
+                    <i class="bi bi-plus"></i>
+                    </a>
+                </div>
 
               <!-- Table with stripped rows -->
               <table class="table datatable">
@@ -46,12 +50,12 @@
                      <td>{{$user->role}}</td>
                      <td>{{$user->created_at->format('Y-m-d')}}</td>
                      <td>
-                        <a href="{{ route('profile.admin.edit', $user->id) }}" class="btn btn-warning">Edit</a>
+                        <a href="{{ route('profile.admin.edit', $user->id) }}" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                         <form action="{{ route('users.destroy', 
                        ['id' => $user->id]) }}" method="POST" style="display:inline;">
                        @csrf
                        @method('DELETE')
-                       <button type="submit" class="btn btn-danger" onclick="return confirm('Are you    sure? Once the account is deleted, all of its resources and data will be permanently deleted.')">Delete</button>
+                       <button type="submit" class="btn btn-danger" onclick="return confirm('Are you    sure? Once the account is deleted, all of its resources and data will be permanently deleted.')"><i class="bi bi-trash"></i></button>
           </form>
 
           </td>

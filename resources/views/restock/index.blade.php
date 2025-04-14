@@ -6,11 +6,11 @@
 <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Manage Restocks</h1>
+      <h1>Restocks</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Home</a></li>
-          <li class="breadcrumb-item active">Purchase Orders</li>
+          <li class="breadcrumb-item active">Restocks</li>
         </ol>
       </nav>
     </div>
@@ -29,48 +29,55 @@
             <!-- Restock Table -->
             <div class="card">
                 <div class="card-body">
-                    <div class="flex justify-end mb-4">
-                        <a href="{{ route('restocks.create') }}" class="btn btn-primary">
-                            Add Restock
+                    <h5 class="card-title"></h5>
+                    <div class="parent">
+                        <a href="{{ route('restocks.create') }}" class="btn btn-success btn-custom">
+                            <i class="bi bi-plus"></i>
                         </a>
                     </div>
-                    <table class="table datatable">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Order ID</th>
-                            <th>Supplier</th>
-                            <th>Date</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Dummy Data -->
-                        @php
-                        $dummyRestocks = [
-                            ['id' => 1, 'order_id' => 'ORD-1001', 'supplier' => 'Pran Sdn Bhd', 'date' => '2024-01-01'],
-                            ['id' => 2, 'order_id' => 'ORD-1002', 'supplier' => 'UTHM', 'date' => '2024-01-02'],
-                            
-                        ];
-                        @endphp
 
-                        @foreach($dummyRestocks as $restock)
-                        <tr>
-                            <td>{{ $restock['id'] }}</td>
-                            <td>{{ $restock['order_id'] }}</td>
-                            <td>{{ $restock['supplier'] }}</td>
-                            <td>{{ $restock['date'] }}</td>
-                            <td>
-                                <!-- Delete Button -->
-                                <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this restock?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Order ID</th>
+                                <th>Supplier</th>
+                                <th>Estimate Arrive</th>
+                                <th>Action</th> <!-- Moved Action column -->
+                                <th>Verify</th> <!-- Moved Verify column -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                            $dummyRestocks = [
+                                ['id' => 1, 'order_id' => 'ORD-1001', 'supplier' => 'Pran Sdn Bhd', 'date' => '2024-01-01'],
+                                ['id' => 2, 'order_id' => 'ORD-1002', 'supplier' => 'UTHM', 'date' => '2024-01-02'],
+                            ];
+                            @endphp
+
+                            @foreach($dummyRestocks as $restock)
+                            <tr>
+                                <td>{{ $restock['id'] }}</td>
+                                <td>{{ $restock['order_id'] }}</td>
+                                <td>{{ $restock['supplier'] }}</td>
+                                <td>{{ $restock['date'] }}</td>
+
+                                <td>
+                                    <!-- Delete Button (Action column) -->
+                                    <form action="#" method="POST" onsubmit="return confirm('Are you sure you want to delete this restock?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                                    </form>
+                                </td>
+
+                                <!-- Verify Button (Verify column) -->
+                                <td>
+                                    <a href="{{ route('restocks.show', $restock['id']) }}" class="btn btn-primary btn-sm"><i class="bi bi-clipboard-check"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

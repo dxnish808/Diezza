@@ -40,21 +40,8 @@
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
 
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
     <nav class="header-nav ms-auto">
       <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
 
         <li class="nav-item dropdown">
 
@@ -202,108 +189,56 @@
 
 <ul class="sidebar-nav" id="sidebar-nav">
 
-  <li class="nav-item">
-    <a class="nav-link " href="{{route('dashboard')}}">
-      <i class="bi bi-grid"></i>
-      <span>Dashboard</span>
+<li class="nav-item">
+    <a class="nav-link collapsed" href="{{ route('dashboard') }}">
+      <i class="bi bi-menu-button-wide"></i><span>Dashboard</span>
     </a>
   </li><!-- End Dashboard Nav -->
 
 
   @if (auth()->user()->role === 'admin')
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-menu-button-wide"></i><span>User Management</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link collapsed" href="{{ route('users') }}">
+      <i class="bi bi-person-lines-fill"></i><span>Users</span>
     </a>
-    <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-    <li>
-        <a href="{{ route('users') }}">
-          <i class="bi bi-circle"></i><span>User</span>
-        </a>
-      </li>
-      <li>
-      @auth
-        <a href="{{ route('register') }}" >
-          <i class="bi bi-circle"></i><span>Register</span>
-        </a>
-        @endauth
-      </li>
-    </ul>
   </li>
   @endif
-  <!-- End Components Nav -->
+  <!-- End User Nav -->
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="{{ route('categories') }}">
-      <i class="bi bi-journal-text"></i><span>Categories</span>
+      <i class="bi bi-box-seam"></i><span>Categories</span>
     </a>
-  </li><!-- End Forms Nav -->
+  </li><!-- End Categories Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-layout-text-window-reverse"></i><span>Stocks</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link collapsed" href="{{ route('stocks.index') }}">
+      <i class="bi bi-cart4"></i><span>Stocks</span>
     </a>
-    <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="{{route('stocks.index')}}">
-          <i class="bi bi-circle"></i><span>Manage Stocks</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{route('stocks.create')}}">
-          <i class="bi bi-circle"></i><span>Add Stocks</span>
-        </a>
-      </li>
-    </ul>
-  </li><!-- End Tables Nav -->
+  </li><!-- End Stocks Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-bar-chart"></i><span>Restock</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link collapsed" href="{{ route('restocks.index') }}">
+      <i class="bi bi-cart-plus"></i><span>Restocks</span>
     </a>
-    <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="{{route('restock.index')}}">
-          <i class="bi bi-circle"></i><span>Purchase Orders</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{route('restock.create')}}">
-          <i class="bi bi-circle"></i><span>Add Order</span>
-        </a>
-      </li>
-      
-    </ul>
-  </li>
+  </li><!-- End Restocks Nav -->
 
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#vendors_data" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-bar-chart"></i><span>Vendors</span><i class="bi bi-chevron-down ms-auto"></i>
+    <a class="nav-link collapsed" href="{{ route('vendors.index') }}">
+      <i class="bi bi-people"></i><span>Vendors</span>
     </a>
-    <ul id="vendors_data" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-      <li>
-        <a href="{{route('vendors.index')}}">
-          <i class="bi bi-circle"></i><span>Manage Vendors</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{route('vendors.create')}}">
-          <i class="bi bi-circle"></i><span>Add Vendor</span>
-        </a>
-      </li>
-      
-    </ul>
-  </li>
+  </li><!-- End Vendors Nav -->
 
+  @if (auth()->user()->role === 'admin')
   <li class="nav-item">
-    <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-      <i class="bi bi-gem"></i><span>Report</span>
+    <a class="nav-link collapsed" href="{{ route('reports.index') }}">
+        <i class="bi bi-clipboard-data"></i><span>Report</span>
     </a>
-    </li>
+</li>
+@endif
 
 
 </ul>
-
 </aside><!-- End Sidebar-->  
 
 @yield('content')

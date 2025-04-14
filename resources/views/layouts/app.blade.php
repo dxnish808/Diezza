@@ -5,11 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'Diezza Rezqi') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+
+        <style>
+        .parent {
+            position: relative; /* Ensure the parent has a position */
+        }
+
+        .btn-custom {
+            position: absolute;
+            top: 1px; 
+        }
+
+        .btn-custom:first-child {
+            right: 180px; 
+        }
+
+        .btn-custom:last-child {
+            right: 20px; 
+        }
+
+        </style>
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])

@@ -18,7 +18,8 @@
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Add Category</h5>
+                <h5 class="card-title"></h5>
+                
 
                 <!-- Floating Labels Form -->
                 <form class="row g-3" action="{{ route('categories') }}" method="POST">
@@ -64,7 +65,7 @@
                                       @csrf
                     @method('DELETE')
                     <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure? Once deleted, all of its resources and data will be permanently deleted.')">
-                        Delete
+                    <i class="bi bi-trash"></i>
                     </button>
                 </form>
                                 </td>

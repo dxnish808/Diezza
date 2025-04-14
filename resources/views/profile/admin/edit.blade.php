@@ -7,12 +7,12 @@
 
   <main id="main" class="main">
     <div class="pagetitle">
-      <h1>User</h1>
+      <h1>Update User</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">User Management</li>
-          <li class="breadcrumb-item active">User</li>
+          <li class="breadcrumb-item"><a href="{{ route('users') }}">Users</a></li>
+          <li class="breadcrumb-item active">Update User</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
@@ -30,29 +30,29 @@
                 <div class="tab-pane fade show active profile-overview" id="profile-overview">
 
 
-                  <h5 class="card-title">Profile Details</h5>
+                  <h5 class="card-title"></h5>
 
                   <div>
-            <x-input-label for="name">Name:</x-input-label>
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
-        </div>
+                      <x-input-label for="name">Name:</x-input-label>
+                      <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
+                      <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                  </div>
 
-        <div>
-            <x-input-label for="email">Email:</x-input-label>
-            <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
-            <x-input-error class="mt-2" :messages="$errors->get('email')" />
-        </div>
+                  <div>
+                      <x-input-label for="email">Email:</x-input-label>
+                      <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
+                      <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                  </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+                  <div class="flex items-center gap-4">
+                      <x-primary-button>{{ __('Save') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
-                <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
-                    {{ __('Saved.') }}
-                </p>
-            @endif
-        </div>
+                      @if (session('status') === 'profile-updated')
+                          <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
+                              {{ __('Saved.') }}
+                          </p>
+                      @endif
+                  </div>
 
                 </div>
               </div><!-- End Bordered Tabs -->
