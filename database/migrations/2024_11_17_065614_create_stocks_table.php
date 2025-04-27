@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('name'); // Name of the stock item
-            $table->integer('in_stock'); // Quantity in stock
+            $table->integer('quantity'); // Quantity in stock
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
         });
     }

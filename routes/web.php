@@ -27,8 +27,7 @@ Route::get('/dashboard', function () {
 
 // Stock management (accessible by all authenticated users)
 Route::resource('stocks', StockController::class)->middleware('auth');
-Route::get('stocks/{id}', [StockController::class, 'show'])->name('stocks.show');
-
+Route::get('/stocks/{id}/details', [StockController::class, 'showById'])->name('stocks.byId');
 Route::get('/scan-barcode', function () {
     return view('stocks.scan');
 })->name('stocks.scan');
@@ -81,17 +80,19 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middl
 //Vendors
 Route::resource('vendors', VendorController::class);
 
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('restocks', [RestockController::class, 'index'])->name('restocks.index'); // Restock list
-    Route::get('restocks/create', [RestockController::class, 'create'])->name('restocks.create'); // Add restock form
-    Route::post('restocks', [RestockController::class, 'store'])->name('restocks.store'); // Store new restock
+    // Specific routes first
+    Route::get('restocks', [RestockController::class, 'index'])->name('restocks.index');
+    Route::get('restocks/create', [RestockController::class, 'create'])->name('restocks.create');
+    Route::post('restocks/add-item', [RestockController::class, 'addItem'])->name('restocks.addItem');
+    Route::post('restocks/submit-order', [RestockController::class, 'submitOrder'])->name('restocks.submitOrder');
+    Route::delete('restocks/remove-item/{index}', [RestockController::class, 'removeItem'])->name('restocks.removeItem');
+    
+    // THEN, only put resource
+    Route::resource('restocks', RestockController::class);
 });
 
-Route::resource('restock', RestockController::class)->middleware('auth');
-Route::get('restocks/{id}', [RestockController::class, 'show'])->name('restocks.show');
-// In routes/web.php
-Route::get('restocks/return', [RestockController::class, 'showReturnPage'])->name('restocks.return');
-Route::post('restocks/return', [RestockController::class, 'processReturn'])->name('restocks.processReturn');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 Route::get('/reports/show', [ReportController::class, 'show'])->name('reports.show');

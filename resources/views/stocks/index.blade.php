@@ -30,8 +30,7 @@
             <!-- Stock Table -->
             <div class="card">
                 <div class="card-body">
-                    <h1 class="card-title"></h1>
-                    <div class="parent">
+                    <div class="parent mt-3">
                         <!-- Create Stock Button -->
                         <a href="{{ route('stocks.create') }}" class="btn btn-success btn-custom">
                             <i class="bi bi-plus"></i>
@@ -41,13 +40,11 @@
                         <a href="{{ route('stocks.scan') }}" class="btn btn-primary btn-custom">
                             <i class="bi bi-upc-scan"></i> Scan Barcode</a>
                     </div>
-                </div>
                     
                     <table class="table datatable">
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Picture</th>
                                 <th>Name</th>
                                 <th>In Stock</th>
                                 <th>Category</th>
@@ -56,20 +53,19 @@
                         </thead>
                         <tbody>
                             @forelse ($stocks as $stock)
-                                <tr onclick="window.location='{{ route('stocks.show', $stock) }}';">
+                            <tr onclick="window.location='{{ route('stocks.byId', ['id' => $stock->id]) }}';">
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>
-                                        @if($stock->picture)
-                                            <img src="{{ asset('storage/' . $stock->picture) }}" alt="{{ $stock->name }}" style="width: 40px; height: 40px;">
-                                        @else
-                                            No Image
-                                        @endif
-                                    </td>
                                     <td>{{ $stock->name }}</td>
-                                    <td>{{ $stock->in_stock }}</td>
-                                    <td>{{ $stock->category->name }}</td>
+                                    <td>{{ $stock->total_quantity }}</td>
                                     <td>
-                                        <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
+                                        @php
+                                            $category = \App\Models\Category::find($stock->category_id);
+                                        @endphp
+                                        {{ $category->name ?? 'N/A' }}
+                                    </td>
+                                    <td>
+                                    <a href="{{ route('stocks.byId', ['id' => $stock->id]) }}" class="btn btn-info btn-sm">View</a>
+                                    <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')

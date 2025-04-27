@@ -49,9 +49,9 @@
                             <!-- Quantity -->
                             <div class="col-md-6">
                                 <label for="inputQuantity" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="inputQuantity" name="in_stock" placeholder="Enter quantity"
-                                    value="{{ old('in_stock') }}" required>
-                                @error('in_stock')
+                                <input type="number" class="form-control" id="inputQuantity" name="quantity" placeholder="Enter quantity"
+                                    value="{{ old('quantity') }}" required>
+                                @error('quantity')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

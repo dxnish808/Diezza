@@ -40,10 +40,10 @@
 
                             <!-- Quantity -->
                             <div class="col-md-6">
-                                <label for="in_stock" class="form-label">Quantity</label>
-                                <input type="number" class="form-control" id="in_stock" name="in_stock"
-                                    value="{{ old('in_stock', $stock->in_stock) }}" required>
-                                @error('in_stock')
+                                <label for="in_" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity"
+                                    value="{{ old('quantity', $stock->quantity) }}" required>
+                                @error('quantity')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
