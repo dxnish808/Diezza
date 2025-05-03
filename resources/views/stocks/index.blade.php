@@ -64,7 +64,6 @@
                                         {{ $category->name ?? 'N/A' }}
                                     </td>
                                     <td>
-                                    <a href="{{ route('stocks.byId', ['id' => $stock->id]) }}" class="btn btn-info btn-sm">View</a>
                                     <a href="{{ route('stocks.edit', $stock->id) }}" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i></a>
                                         <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST" style="display:inline;">
                                             @csrf

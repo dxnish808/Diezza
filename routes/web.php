@@ -81,16 +81,16 @@ Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->middl
 Route::resource('vendors', VendorController::class);
 
 
-Route::middleware(['auth'])->group(function () {
-    // Specific routes first
-    Route::get('restocks', [RestockController::class, 'index'])->name('restocks.index');
-    Route::get('restocks/create', [RestockController::class, 'create'])->name('restocks.create');
-    Route::post('restocks/add-item', [RestockController::class, 'addItem'])->name('restocks.addItem');
-    Route::post('restocks/submit-order', [RestockController::class, 'submitOrder'])->name('restocks.submitOrder');
-    Route::delete('restocks/remove-item/{index}', [RestockController::class, 'removeItem'])->name('restocks.removeItem');
-    
-    // THEN, only put resource
-    Route::resource('restocks', RestockController::class);
+Route::prefix('restocks')->group(function () {
+    Route::get('/', [RestockController::class, 'index'])->name('restocks.index');
+    Route::get('/create', [RestockController::class, 'create'])->name('restocks.create');
+    Route::post('/add-item', [RestockController::class, 'addItem'])->name('restocks.addItem');
+    Route::delete('/remove-item/{index}', [RestockController::class, 'removeItem'])->name('restocks.removeItem');
+    Route::post('/submit', [RestockController::class, 'submitOrder'])->name('restocks.submitOrder');
+    Route::delete('/group/{order_group_id}', [RestockController::class, 'destroyGroup'])->name('restocks.destroyGroup');
+    Route::get('/restocks/{id}', [RestockController::class, 'show'])->name('restocks.show');
+    Route::get('/restocks/verify/{order_group_id}', [RestockController::class, 'verify'])->name('restocks.verify');
+
 });
 
 

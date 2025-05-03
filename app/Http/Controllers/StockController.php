@@ -17,14 +17,16 @@ class StockController extends Controller
      * @return View
      */
     public function index()
-{
-    $stocks = DB::table('stocks')
-        ->select('name', DB::raw('MIN(id) as id'), DB::raw('SUM(quantity) as total_quantity'), 'category_id')
-        ->groupBy('name', 'category_id')
-        ->get();
-
-    return view('stocks.index', compact('stocks'));
-}
+    {
+        $stocks = DB::table('stocks')
+            ->where('status', 2) // Only include verified stock
+            ->select('name', DB::raw('MIN(id) as id'), DB::raw('SUM(quantity) as total_quantity'), 'category_id')
+            ->groupBy('name', 'category_id')
+            ->get();
+    
+        return view('stocks.index', compact('stocks'));
+    }
+    
     
 
     /**
